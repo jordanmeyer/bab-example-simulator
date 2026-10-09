@@ -1,6 +1,6 @@
 # Independent review — Seasonal order lab
 
-Reviewer: persistent independent recipe reviewer. Status: **PASS for source 8dbb6ab30ef959c008e058169af41c561d41fc6a**. Developer owns implementation and other reports; reviewer owns this file. Publication requires the normal clean build from this unchanged source.
+Reviewer: persistent independent recipe reviewer. Status: **PASS for source6b25b8a6898a0575b5270406b1cff7df48f7c047**, including the bounded history-restoration follow-up after the earlier PASS at8dbb6ab30ef959c008e058169af41c561d41fc6a. Earlier evidence, failures and verdict are retained below. Developer owns implementation and other reports; reviewer owns this file.
 
 ## Round 1 — source checkpoint d99a7b8e1941d6252b2bf3472dd4ca6c4a1aacff
 
@@ -40,3 +40,19 @@ Production1440/320 frames measured1439/319 client and scroll widths with no docu
 Away/Back/Run retains correct results and two chart SVGs; captured warnings/errors are empty. This does not establish persisted bfcache use, so the persisted-pagehide claim remains limited to the reviewed source guard. Source/notices links are correct. Frame rendering is CSS-layout evidence, not a physical-device claim; host iframe-control limits are documented in the witness.
 
 All required findings are closed. The product makes its conditional distribution, rounded economics, shared draws, limited three-option search, Wilson screening and stale/completed-run distinction explicit. The model, interface and supported boundary behavior now agree. No additional feature is required for this agreed scope. The known bundle advisory and untested clipboard-permission-denial branch remain honestly disclosed limitations. The clean publication build must remove the temporary ignored-dist visual harness; it must not change reviewed application source.
+
+## Reopened bounded finding — native history restoration
+
+Subsequent market/roadmap checks established that the host may restore native form values while reinitializing JavaScript. The simulator's earlier Away/Back check verified results **after Run**, so it did not establish agreement before submission. Reviewer requested this specific missing observation rather than repeating the entire review.
+
+Developer confirmed: run the certainty preset, navigate to tests, then Back. Before Run, demand SD0 and minimum cost21 were restored, while the decision showed the default600/$6439 and the status claimed Run complete with seed tote-2026. That mismatched form/result state lacked the intended stale warning. This is a confirmed required lifecycle correction; the earlier model, chart and post-Run results remain valid evidence. Root authorized the developer to fix it, preserving this failed round. Revised source and independent pre-Run history checks are pending.
+
+At follow-up source `9d730495f938700e4efbddc3ffec4743171b579d`, the only executable change was form autocomplete disabled. Reviewer verified that diff; developer observed applied certainty and pending seed each return consistent default fields/results. Reviewer then requested the same check for the inventory selector outside the form. That additional affected control was confirmed: selector400 restored while inventory content showed600. Developer is applying the same minimal correction to that selector. This incomplete follow-up is not a renewed PASS.
+
+## Follow-up PASS — source6b25b8a6898a0575b5270406b1cff7df48f7c047
+
+Reviewer verified the final complete diff against the earlier passing executable source: exactly two autocomplete attributes on the scenario form and inventory selector. Removing them yields byte-identical original HTML. Model, JavaScript, CSS, PLAN and tests are unchanged. Final relevant-source diff is empty; report-only edits are separate.
+
+Coordinator independently applied certainty (SD0, cost21), selected inventory400, navigated to the test page (observed17/17), then Back. **Before any further interaction**, controls show SD120, costs18–24 and seed tote-2026; selector600, leading option600 and inventory detail600 agree. The completed-run status is consistent, two SVGs remain and captured warnings/errors are empty. Developer separately exercised pending-seed restoration. This directly closes the previously missed pre-Run boundary, including the selector outside the form.
+
+All required findings are closed again. Earlier independent numerical, keyboard, import-free local-data, chart and narrow-layout evidence remains applicable to this HTML-only correction. Root may publish an ordinary update after build/freshness/live checks. This follow-up is attributed to the independent coordinator browser witness because the reviewer's browser remains unavailable; no universal browser-history or bfcache claim is made.
