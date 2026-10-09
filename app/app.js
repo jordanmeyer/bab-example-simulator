@@ -7,7 +7,7 @@ import './theme/duke-fonts.css';
 import './style.css';
 import {echartsTheme} from './theme/echarts.js';
 import {duke} from './theme/tokens.js';
-import {defaults,RUNS,simulate,quantityStudy,validate,money,pct} from './model.js';
+import {defaults,RUNS,simulate,quantityStudy,validate,money,exactMoney,pct} from './model.js';
 echarts.use([LineChart,BarChart,ScatterChart,GridComponent,TooltipComponent,AriaComponent,SVGRenderer]);
 await document.fonts.ready;
 const el=id=>document.getElementById(id),form=el('scenario'),d=duke();
@@ -39,8 +39,8 @@ function run(){
 }
 function render(){
  const {input,deterministic}=result,{best,choice,ratio,critical}=study;
- el('decision').innerHTML=`<p class="eyebrow">LAST COMPLETED RUN · ${pct(input.riskLimit)} LOSS LIMIT</p><h2>${choice?`Order ${choice.q.toLocaleString()} units within your limit.`:'No quantity meets your risk limit.'}</h2><p>${choice?`${money(choice.mean)} expected contribution; ${pct(choice.loss)} simulated chance of loss. The ${deterministic?'exact loss rate':'sampling cushion'} is ${pct(choice.upper)}, within your ${pct(input.riskLimit)} limit.`:'None of the whole orders from 1–5,000 passes. Reconsider your assumptions or the launch; no order has been recommended.'}</p><p>${choice&&choice.q!==best.q?`Without the loss screen, ${best.q} units maximize expected contribution at ${money(best.mean)}. Your risk limit gives up ${money(best.mean-choice.mean)} of expected contribution.`:choice?'The loss limit does not change the expected-profit choice in this scenario.':`The unscreened peak is ${best.q} units at ${money(best.mean)}.`}</p>`;
- el('benchmark-copy').textContent=ratio===null?'The usual critical-ratio rule needs selling price > mean cost > recovery. The curve still compares every allowed integer using the entered economics.':`The critical ratio is ${pct(ratio)}: (${money(input.price)} − ${money((input.costLow+input.costHigh)/2)}) ÷ (${money(input.price)} − ${money(input.recovery)}). Its continuous demand quantile is ${critical.toFixed(1)} units; the exact whole-unit peak is ${best.q}.`;
+ el('decision').innerHTML=`<p class="eyebrow">LAST COMPLETED RUN · ${pct(input.riskLimit)} LOSS LIMIT</p><h2>${choice?`Order ${choice.q.toLocaleString()} units within your limit.`:'No quantity meets your risk limit.'}</h2><p>${choice?`${money(choice.mean)} expected contribution; ${pct(choice.loss)} simulated chance of loss. The ${deterministic?'exact loss rate':'conservative upper estimate'} is ${pct(choice.upper)}, within your ${pct(input.riskLimit)} limit.`:'None of the whole orders from 1–5,000 passes. Reconsider your assumptions or the launch; no order has been recommended.'}</p><p>${choice&&choice.q!==best.q?`Without the loss screen, ${best.q} units maximize expected contribution at ${money(best.mean)}. Your risk limit gives up ${money(best.mean-choice.mean)} of expected contribution.`:choice?'The loss limit does not change the expected-profit choice in this scenario.':`The unscreened peak is ${best.q} units at ${money(best.mean)}.`}</p>`;
+ el('benchmark-copy').textContent=ratio===null?'The usual critical-ratio rule needs selling price > mean cost > recovery. The curve still compares every allowed integer using the entered economics.':`The critical ratio is ${pct(ratio)}: (${exactMoney(input.price)} − ${exactMoney((input.costLow+input.costHigh)/2)}) ÷ (${exactMoney(input.price)} − ${exactMoney(input.recovery)}). Its continuous demand quantile is ${critical.toFixed(1)} units; the exact whole-unit peak is ${best.q}.`;
  const maximum=Math.min(5000,Math.max(...input.quantities,best.q,choice?.q??1,Math.ceil(input.demandMean+3*input.demandSd),100));
  const step=Math.max(1,Math.floor(maximum/180));
  const rows=study.rows.filter(r=>r.q<=maximum&&(r.q===1||r.q===maximum||r.q%step===0||r.q===best.q||r.q===choice?.q));
@@ -56,7 +56,7 @@ function render(){
 }
 function renderInventory(){
  inspected=simulate({...result.input,quantities:[selected]},RUNS).options[0];
- const r=inspected,binWidth=Math.max(100,10**Math.floor(Math.log10(Math.max(100,r.profits.at(-1)-r.profits[0])))/2);
+ const r=inspected,rawWidth=Math.max(100,(r.profits.at(-1)-r.profits[0])/12),scale=10**Math.floor(Math.log10(rawWidth)),binWidth=Math.ceil(rawWidth/scale)*scale;
  const start=Math.floor(r.profits[0]/binWidth)*binWidth,bins=Array.from({length:Math.floor((r.profits.at(-1)-start)/binWidth)+1},()=>0);
  r.profits.forEach(value=>bins[Math.floor((value-start)/binWidth)]++);
  charts[1].setOption({animation:false,aria:{enabled:true},grid:{top:20,right:20,bottom:65,left:55},tooltip:{trigger:'item',renderMode:'richText',formatter:p=>`${p.name}\n${pct(p.value/100)} of scenarios`},xAxis:{type:'category',data:bins.map((_,i)=>`${money(start+i*binWidth)}–${money(start+(i+1)*binWidth)}`),axisLabel:{hideOverlap:true,fontSize:10}},yAxis:{type:'value',axisLabel:{formatter:'{value}%'}},series:[{type:'bar',name:'Share of scenarios',data:bins.map(n=>n/RUNS*100),itemStyle:{color:d.navy}}]},true);
