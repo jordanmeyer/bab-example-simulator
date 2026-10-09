@@ -33,3 +33,7 @@ Prepared source: https://github.com/jordanmeyer/bab-example-simulator
 Prepared site: https://jordanmeyer.github.io/bab-example-simulator/
 
 Coordinator owns publication after independent review. See DEPLOYMENT.md for actual status; prepared destinations are not deployment claims. Only dist/ is deployed using ordinary main commits. Git history publicly attributes the authorized Jordan Meyer <jordanmeyer@protonmail.com> identity.
+
+## 2026-10-09 revision
+
+See [How this was built](BUILD-STORY.md). The quantity curve searches every integer order from 1–5,000 and distinguishes the analytic peak from the risk-screened choice. Default risk is now 3%; secondary assumptions and details expand on demand. Local licensed EB Garamond/Open Sans replace system fallbacks. Run preview on port 9702 and browser tests on 9701.

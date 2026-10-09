@@ -2,7 +2,7 @@ import stats from 'jstat';
 import seedrandom from 'seedrandom';
 export const {jStat}=stats;
 export const RUNS=10000;
-export const defaults={price:4500,recovery:1000,fixed:400000,costLow:1800,costHigh:2400,demandMean:500,demandSd:120,quantities:[400,500,600],riskLimit:.2,seed:'tote-2026'};
+export const defaults={price:4500,recovery:1000,fixed:400000,costLow:1800,costHigh:2400,demandMean:500,demandSd:120,quantities:[400,500,600],riskLimit:.03,seed:'tote-2026'};
 export const money=cents=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0}).format(cents/100);
 export const exactMoney=cents=>new Intl.NumberFormat('en-US',{style:'currency',currency:'USD'}).format(cents/100);
 export const pct=value=>`${(100*value).toFixed(1)}%`;
@@ -67,4 +67,26 @@ export function simulate(input,n=RUNS){
  });
  const eligible=options.filter(r=>r.eligible).sort((a,b)=>b.mean-a.mean||a.q-b.q);
  return {input:structuredClone(input),options,choice:eligible[0]?.q??null,n,deterministic,sampleMean:jStat.mean(sample.map(r=>r.demand)),sampleCost:jStat.mean(sample.map(r=>r.cost))};
+}
+
+// Exact expected sales grow by P(rounded demand >= q); scan every allowed integer.
+export function quantityStudy(input, sample=draws(input)) {
+ const meanCost=(input.costLow+input.costHigh)/2;
+ const lower=input.demandSd?jStat.normal.cdf(0,input.demandMean,input.demandSd):0;
+ const deterministic=input.demandSd===0&&input.costLow===input.costHigh;
+ let sold=0;
+ const rows=Array.from({length:5000},(_,index)=>{
+  const q=index+1;
+  sold+=input.demandSd?(1-jStat.normal.cdf(q-.5,input.demandMean,input.demandSd))/(1-lower):Number(q<=Math.round(input.demandMean));
+  const mean=sold*(input.price-input.recovery)+q*(input.recovery-meanCost)-input.fixed;
+  let losses=0;
+  for(const {demand,cost} of sample)if(Math.min(q,demand)*(input.price-input.recovery)+q*(input.recovery-cost)-input.fixed<0)losses++;
+  const loss=losses/sample.length,upper=deterministic?loss:wilson(losses,sample.length)[1];
+  return {q,mean,loss,upper,eligible:upper<=input.riskLimit};
+ });
+ const best=rows.reduce((best,row)=>row.mean>best.mean+1e-7?row:best);
+ const choice=rows.filter(row=>row.eligible).reduce((best,row)=>!best||row.mean>best.mean+1e-7?row:best,null);
+ const ratio=input.price>meanCost&&meanCost>input.recovery?(input.price-meanCost)/(input.price-input.recovery):null;
+ const critical=ratio===null?null:input.demandSd?jStat.normal.inv(lower+(1-lower)*ratio,input.demandMean,input.demandSd):Math.round(input.demandMean);
+ return {rows,best,choice,ratio,critical};
 }
