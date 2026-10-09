@@ -10,7 +10,8 @@ A buyer can see the full expected-profit peak, then see how downside tolerance c
 
 - [x] 2026-10-09: Read original plan, brief, review and current recipes; inspect clean repositories and fetch origin.
 - [x] 2026-10-09: Extend the model, build the quantity curve and histogram, consolidate comparison and methods, bundle fonts and provenance.
-- [ ] 2026-10-09: Checkpoint, run final browser/production evaluation, independent review and authorized publication.
+- [x] 2026-10-09: Checkpoint and complete developer browser/production evaluation.
+- [ ] 2026-10-09: Independent review and authorized publication.
 
 ## Surprises & Discoveries
 
@@ -22,7 +23,7 @@ A 5% limit excludes the old q600 comparison but admits the true q558 peak. The d
 
 ## Outcomes & Retrospective
 
-Implementation complete; final browser checks and independent approval remain. Retain earlier evaluation evidence rather than relabeling it.
+Implementation and developer browser checks complete; independent approval remains. Retain earlier evaluation evidence rather than relabeling it.
 
 ## Context and Orientation
 
