@@ -14,7 +14,7 @@ A fictional campus-store buyer chooses one order for a seasonal tote. The app sh
 - [x] (2026-10-09) Derive independent references and observe17/17 preliminary browser tests; production renders.
 - [x] (2026-10-09) Reinstall and freeze first source checkpoint;17/17 final model checks and production product interactions passed.
 - [x] (2026-10-09) Preserve failed independent-review rounds; fix bfcache lifecycle and narrow maximum-money chart labels.
-- [ ] Freeze revised source and repeat affected final checks.
+- [x] (2026-10-09) Freeze8dbb6ab30ef959c008e058169af41c561d41fc6a and repeat17/17 model, revised narrow charts and native navigation/rerun checks; source/PLAN comparisons clean before/after.
 - [ ] Complete persistent independent review and revisions, then hand off publication to coordinator.
 
 ## Surprises & Discoveries
