@@ -60,3 +60,5 @@ PLAN.md defines exact formulas, input bounds, statistical conventions and refere
 Revision note: initialized after full initial implementation and exploratory checks; final/independent stages remain explicit.
 
 Follow-up2026-10-09: after independentPASS and initial live publication, reviewer requested checking native Back BEFORE rerun. Confirmed restored certainty controls with default results; prior tests had only required successful rerun. Disable form native restoration and verify both appliedcertainty and pendingseed navigation return consistently. Preserve initial PASS/deployment and send a new source checkpoint for a reviewed ordinary update.
+
+Follow-up: independently reproduced native restoration mismatch also affected outside-form selects. Disable restoration on the affected selectors, verify actual Back before interaction, and freeze a new source checkpoint.
