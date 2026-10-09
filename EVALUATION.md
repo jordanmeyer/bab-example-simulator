@@ -61,3 +61,9 @@ Round 1, before source checkpoint: Node adapter ran the browser model suite, 23/
 Actual production, 320px and 200% text review is pending root browser access. This subagent's enabled-browser inventory was empty. Node execution with a minimal document adapter is model evidence only, not browser evidence. Actual novice and screen-reader tasks remain open.
 
 Independent source-review failure at5381a82: negative/flat high-fixed-cost curves chose tick spacing from the curve spread before including zero. A constant−$100000 curve would request2001ticks; the negative certainty exercise requested21. Corrected spacing to use the zero-inclusive range and a bounded nice interval (no more than five unrounded intervals, plus rounded endpoints). Zero reference remains. The flat−$100000 case now uses$20000 spacing/six ticks; negative certainty also uses$20000. Production plot inspection must cover this correction; no prior browser pass is claimed for the defective axis.
+
+## Current root browser witness — correction source 0f0fd744
+
+Root reports the actual browser model suite passed 24/24 for the current correction round. Application source remains `0f0fd7441ba10190fd5de4f4e2db9926aee86932`, independently source/model reviewed by the data agent. This report adds no application change and does not repeat unchanged tests.
+
+Full production interactions, corrected negative/flat chart inspection, 320px and 200% text checks, clipboard and configured-browser timing remain pending. Intended-student-device timing (SIM-14), actual screen-reader tasks (ALL-11) and novice observations (ALL-16) remain open. Earlier failed expectation and axis rounds are preserved; the browser case count alone does not close those rendered or human gates.
