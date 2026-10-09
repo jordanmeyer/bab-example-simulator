@@ -73,6 +73,6 @@ el('copy').addEventListener('click',async()=>{
  try{await navigator.clipboard.writeText(text);el('copy-status').textContent='Last-run assumptions copied. Money is recorded as USD cents.';}
  catch{el('copy-fallback').hidden=false;el('copy-fallback').querySelector('textarea').value=text;el('copy-fallback').querySelector('textarea').focus();el('copy-status').textContent='Select and copy the last-run assumptions below.';}
 });
-window.addEventListener('pageshow',event=>{if(event.persisted){setForm(result.input);el('selected-order').value=selected;el('results').classList.remove('pending');el('form-status').textContent='Returned to the last completed assumptions and results.';}});
+window.addEventListener('pageshow',event=>{requestAnimationFrame(()=>{setForm(result.input);el('selected-order').value=selected;el('results').classList.remove('pending');if(event.persisted)el('form-status').textContent='Returned to the last completed assumptions and results.';});});
 window.addEventListener('pagehide',event=>{if(!event.persisted){resize.disconnect();charts.forEach(chart=>chart.dispose());}});
 setForm(defaults);run();
