@@ -12,3 +12,7 @@ Pending ordinary update2026-10-09: a post-publication native Back form/result mi
 ## Returning-browser correction
 
 Follow-up publication3ef9f4ebab82f7b641538a0035156c20b56d3a24 succeeded in Actions37892737655. Reviewed source6b25b8a6898a0575b5270406b1cff7df48f7c047 changes only native autocomplete attributes. Coordinator live pre-interaction Back check fromcertainty/inspect400 resetSD120/cost18–24/inspect600 with matching defaultlead/detail600, twoSVGcharts and emptywarning/errorlogs.
+
+## 2026-10-09 live revision
+
+Root published af31a95ccfc69a74caf5f4da395a82b17e44ce3d after independent review of source455b426ca46af9f95add44d64768019cd9539d72. GitHub Actions run37964135811 succeeded. Root opened https://jordanmeyer.github.io/bab-example-simulator/ and observed default469 units/$6,068; risk20% changed to558/$6,510; reload restored3%/469; browser logs were empty. Source and reports are public at https://github.com/jordanmeyer/bab-example-simulator. This report-only update does not alter the evaluated source or plan.
