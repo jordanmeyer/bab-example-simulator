@@ -1,7 +1,8 @@
 # Deployment
 
-Prepared; not yet published by developer. Authorized repository https://github.com/jordanmeyer/bab-example-simulator and Pages destination https://jordanmeyer.github.io/bab-example-simulator/. Vite base is `/bab-example-simulator/`, source footer names that repository, notices use the local prefix. The copied managed Pages workflow installs locked packages with Node22.19.0, builds and uploads only dist/, and runs on main. Tests/reports/source and node_modules are not website assets.
+Public repository: https://github.com/jordanmeyer/bab-example-simulator
+Live app: https://jordanmeyer.github.io/bab-example-simulator/
 
-Coordinator creates/pushes after independent PASS, waits for actual deployed revision and verifies live known-answer/interaction/source/notices. Record evaluated source, report-only published descendant, Actions URL/outcome and live findings here when available. A local prefix check or queued workflow is not a live deployment.
+Reviewed/evaluated source: `8dbb6ab30ef959c008e058169af41c561d41fc6a`. Published commit: `c769e3f26b89358ccb96cae5c280b2eee5fc0608` (source matches; following changes are reports). Successful Pages Actions run: https://github.com/jordanmeyer/bab-example-simulator/actions/runs/37890670831.
 
-Ordinary update: edit source and agreed plan; install/check dependencies; build notices; commit intended source/tests/workflow; evaluate affected behavior at that commit; verify freshness; push main; wait for exact workflow revision; verify a returning browser loads fingerprinted assets and current results. Verbatim notice updates require an explicit live-content check. Do not force push or deploy another branch.
+Coordinator independently verified the live application2026-10-09: default600/$6,439.05; certainty400/500/600 gives$5,600/$8,000/$6,900. Both repository-path versioned assets loaded, both charts rendered, source and local notices links were correct, captured warning/error logs were empty. Clean publication build removed local-only review fixtures; only application output and notices were published.
