@@ -12,12 +12,14 @@ A fictional campus-store buyer chooses one order for a seasonal tote. The app sh
 - [x] (2026-10-09) Record simulated agreement on payoff, conditional demand, independence, risk screen and certainty test.
 - [x] (2026-10-09) Implement model, native controls, charts, evidence tables and copy fallback.
 - [x] (2026-10-09) Derive independent references and observe17/17 preliminary browser tests; production renders.
-- [ ] Reinstall, inspect/commit source and run final clean-checkpoint checks.
+- [x] (2026-10-09) Reinstall and freeze first source checkpoint;17/17 final model checks and production product interactions passed.
+- [x] (2026-10-09) Preserve failed independent-review rounds; fix bfcache lifecycle and narrow maximum-money chart labels.
+- [ ] Freeze revised source and repeat affected final checks.
 - [ ] Complete persistent independent review and revisions, then hand off publication to coordinator.
 
 ## Surprises & Discoveries
 
-Conditioning a normal distribution is materially different from clipping negative values to zero, especially when mean is near zero. The half-normal independent reference protects this boundary. Rounding uniform unit cost to cents also changes a threshold's endpoint probability:50–52 cents with51-cent revenue has25% loss probability. The UI's native hidden label needed an explicit hidden CSS rule because generic label styling otherwise competes with the browser rule. No numerical browser test has failed so far.
+Conditioning a normal distribution is materially different from clipping negative values to zero, especially when mean is near zero. The half-normal independent reference protects this boundary. Rounding uniform unit cost to cents also changes a threshold's endpoint probability:50–52 cents with51-cent revenue has25% loss probability. The UI's native hidden label needed an explicit hidden CSS rule because generic label styling otherwise competes with the browser rule. No numerical browser test has failed so far. Independent review identified bfcache teardown and a maximum-money narrow chart-label collision; both required implementation revisions. The local production review harness is generated from tracked tests/ and removed by a fresh build.
 
 ## Decision Log
 
@@ -25,7 +27,7 @@ The simulated student chose price45, recovery10, fixed4000, mean500/SD120, cost1
 
 ## Outcomes & Retrospective
 
-Full product behavior exists and preliminary17-case suite passes. Final source evidence, independent review and live publication remain outstanding. Coordinator owns publication and this developer must not alter course files or push.
+Full product behavior and17-case suite passed at the first checkpoint. Production keyboard, error, seed, copy and narrow flows passed. Independent-review lifecycle and edge-chart revisions are ready for another clean checkpoint. Independent review and live publication remain outstanding. Coordinator owns publication and this developer must not alter course files or push.
 
 ## Context and Orientation
 

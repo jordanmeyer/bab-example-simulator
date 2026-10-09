@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Large-value narrow review fixture</title><style>body{margin:16px;font:14px Arial}h1{font-size:18px}iframe{width:320px;height:900px;border:1px solid #666;display:block}</style></head>
+<body><h1>320px maximum-money boundary</h1><p>Local production app fixture. All three options lose exactly $1,000,000.</p><iframe title="320 pixel maximum-money scenario" src="/bab-example-simulator/"></iframe>
+<script>
+document.querySelector('iframe').addEventListener('load',event=>{
+ const form=event.target.contentDocument.querySelector('#scenario');
+ for(const [name,value] of Object.entries({fixed:1000000,price:500,recovery:500,costLow:500,costHigh:500,q0:4998,q1:4999,q2:5000}))form.elements[name].value=value;
+ form.requestSubmit();
+});
+</script></body></html>
