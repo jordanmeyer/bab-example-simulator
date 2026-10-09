@@ -67,3 +67,11 @@ Independent source-review failure at5381a82: negative/flat high-fixed-cost curve
 Root reports the actual browser model suite passed 24/24 for the current correction round. Application source remains `0f0fd7441ba10190fd5de4f4e2db9926aee86932`, independently source/model reviewed by the data agent. This report adds no application change and does not repeat unchanged tests.
 
 Full production interactions, corrected negative/flat chart inspection, 320px and 200% text checks, clipboard and configured-browser timing remain pending. Intended-student-device timing (SIM-14), actual screen-reader tasks (ALL-11) and novice observations (ALL-16) remain open. Earlier failed expectation and axis rounds are preserved; the browser case count alone does not close those rendered or human gates.
+
+## Root production boundary witness — source 0f0fd744
+
+The coordinator observed the supported flat case with price, recovery and both unit costs $10, fixed cost $100,000 and risk limit 100%: every order gives −$100,000, the tie selects one unit, and the app warns that the least loss does not justify launching. The corrected chart has six readable y ticks from −$100K to $0. The actual 320px authored frame measured 319px client and scroll widths; `narrow-flat-curve.png` preserves the inspected production chart.
+
+Certainty with fixed cost $100,000 and risk 100% selected 500 / −$88,000, with 400 / −$90,400 and 600 / −$89,100 comparisons. Risk zero produced no eligible quantity. Mean zero / deviation 50 showed conditional mean 39.9, sampled mean 39.9 and 5th/median/95th percentiles 3/34/97. These actual observations are retained in course `browser-boundaries.json`.
+
+The separate 1280px production frame with root/body text 32px measured page/scroll width 1280; the coordinator inspected readable result and chart-entry content. An observed run took 89ms on the configured Mac. This is scoped rendering/timing evidence, not complete worst-case 200% coverage or intended-student-device performance. Clipboard, the remaining full production/layout task matrix, actual screen reader and novice observations stay open. No application code changed for this report.
