@@ -1,0 +1,41 @@
+# Seasonal order lab
+
+Agreed in a simulated student planning exchange on2026-10-09; not an actual student interview or real customer model.
+
+## Purpose and scope
+
+A fictional campus-store buyer must choose one seasonal order for an insulated picnic tote. Demand and landed unit cost are uncertain. Compare three editable quantities by expected contribution, chance of loss, downside percentiles, leftover units and missed demand. Choose the largest simulated expected contribution among options passing an explicit risk screen; if none pass, do not recommend an order. The smallest useful version is a local, reproducible experiment with10,000 draws, chart/table explanations and a hand-checkable certainty preset. No actual purchasing, imports, accounts, external data, saved state, optimization across all possible quantities, demand fitting or correlated uncertainties.
+
+## Agreed starting case
+
+Selling price$45, clearance recovery$10 per unsold tote, fixed launch cost$4,000. Demand is normal with underlying mean500 and standard deviation120, conditioned to be nonnegative and then rounded to whole units. This corresponds to repeatedly drawing until demand is nonnegative; inverse conditional CDF sampling implements that distribution efficiently. Unit cost is uniform$18–$24, independent of demand, rounded to cents. One cost draw applies to every unit of an order in that scenario, not separate unit-level draws. Quantities400/500/600, risk limit20%, seed `tote-2026`,10,000 scenarios. Unmet demand disappears, with no backorder or extra penalty. Every leftover is cleared at the recovery amount; no inventory disposal uncertainty.
+
+## Model and statistical conventions
+
+Each trial consumes two successive values from a local seedrandom generator, first for demand and second for cost, even when an input is fixed. It never replaces Math.random. Let F be the underlying normal CDF and a=F(0). Demand is round(F-inverse(a+(1−a)U)); the result is nonnegative. Input mean/deviation describe the underlying normal, so conditioning changes realized moments near zero. When deviation=0, demand is the rounded input mean. Cost is rounded to integer cents after drawing uniformly between its bounds. Both random values are reused across all three options, so reordering options does not change results.
+
+For quantityQ and demandD, sold=min(Q,D), leftover=Q−sold, missed=max(D−Q,0). Contribution cents = sold×price + leftover×recovery −Q×cost −fixed. This excludes headquarters/tax/financing and is not company profit. A loss is strictly contribution<0. Output means average all trials. Downside5th/median/95th percentiles use nearest-rank order statistics. Expected leftover and sold may be fractional because they average integer outcomes. Currency input is converted to integer cents; cards round USD to whole dollars, detailed tables show two decimal USD, rates show one decimal. Comparisons use unrounded values.
+
+For uncertain runs, loss probability interval is the two-sided95% Wilson interval using z=normal-inverse(.975). Eligibility uses its upper endpoint≤riskLimit. Among eligible options choose highest simulated mean; exact ties favor the smaller quantity. No eligible option yields an explicit no-recommendation result. The displayed95% mean interval is mean±z×sample-standard-deviation/sqrt(n), using sample variance denominator n−1. It describes Monte Carlo error, not the business outcome spread or model uncertainty. If demand deviation is0 and unit cost bounds are equal, the full result is deterministic; use exact mean/loss values and no artificial sampling interval. This policy was disclosed in planning.
+
+The analytic cross-check enumerates the probability of each possible sold amount0…Q under the rounded conditioned normal. It collapses all demand≥Q to soldQ and averages contribution using midpoint cost. Analytic loss probability integrates the uniform cost conditional on each sold amount. Because costs round to cents, cost>threshold corresponds to raw cost≥floor(threshold)+0.5 cents. Fixed-cost distributions use direct inequality. This separate probability calculation uses no random draws. It still shares the model's assumptions and does not certify them.
+
+## Validation boundaries
+
+Price, recovery and cost bounds:USD0–500 with at most2 decimals. Recovery≤price; costHigh≥costLow. Fixed cost:USD0–1,000,000. Demand mean/deviation:finite0–5,000 units. Three distinct whole quantities1–5,000. Risk limit0–100%. Nonblank seed1–60 characters. Empty, nonfinite or invalid inputs display associated errors and preserve the previous completed run; changed assumptions are labeled unrun until submitting. Reset restores the starting case. Copy captures the last completed assumptions, seed, draw count and cent units, with a visible fallback when clipboard access fails.
+
+## Independent expected cases, derived before observing browser outputs
+
+The certainty preset keeps price45/recovery10/fixed4000, uses demand500/deviation0 and fixed unit cost21. Orders400/500/600 yield respectively18000−8400−4000=$5,600;22500−10500−4000=$8,000;22500+1000−12600−4000=$6,900. Leftovers0/0/100; losses0%; quantity500 leads, including a0% risk limit because this is exact. All-zero economics break even and must not count as a loss; equal means favor quantity400. A sufficiently large fixed cost makes every order lose and yields no recommendation.
+
+A separate arithmetic case:80 sales×$20 +20 leftover×$4 −100 ordered×$12 −$100 fixed=$380. Demand150/order100 yields100 sold,0 leftover,50 missed. For a cost uniform50–52 cents, sales revenue51 cents andQ1, rounding creates a25% chance of cost52, so expected profit0 and loss probability25%. Wilson zero losses in100 draws has upper endpoint z²/(100+z²)=0.03699349820698568, not zero.
+
+`tests/reference.py` independently uses Python's math.erf normal CDF, not jStat or application functions. Before browser tests it produced default expected contributions in cents512434.6045545513 /632470.5983907643 /642440.0136420537 and loss probabilities0.01624302237272553 /0.03099309108054615 /0.05536815419465702 for400/500/600. Analytic tolerances are1e−5 cents/1e−10 probability. The stochastic check allows5 independently calculated sampling standard errors for sample means and loss shares, predeclared rather than tuned to observed output. A mean0/SD50 case gives expected capped sales39.04458284869684 forQ100 and loss probability0.6778258809783382 with price$20/cost$10/recovery0/fixed0; this catches confusing conditional truncation with clipping at zero.
+
+The seedrandom upstream reference sequence for seed `hello.` is double0.9282578795792454, double0.3752569768646784, quick0.7316977467853576, int32 1966374204. jStat cases verify mean4, sample variance4 and population variance8/3 for[2,4,6], plus standard normal CDF0=.5 and97.5th percentile1.95996398454. Repeating a seed, changing it, preserving Math.random and option-order invariance are checked separately from model accuracy.
+
+## Libraries, design and acceptance
+
+Managed Vite with approved jStat1.9.6 for inverse/CDF/summary uncertainty, seedrandom3.0.5 for local reproducible draws and ECharts6.1.0 for cumulative downside and risk/return charts. No React or UI framework. Bundled Campus Designer uses unchanged navy/royal, solid magnolia/copper series, Georgia headings and Arial body, with no remote fonts or institutional marks. The tote sketch is authored CSS, not a trademark or stock image. Chart curves render201 sample percentile points; all calculations use10,000 outcomes. Chart tables, non-color letters/line patterns/symbols and keyboard controls provide alternatives.
+
+Desktop1440px and narrow320px production frames must show readable layout and confined table scrolling. Keyboard users can edit, submit, reset, run certainty, inspect quantities, expand tables and copy. Errors must be announced/labeled and focus the first invalid field. The default/5%/1% risk screens, certainty, all-loss, repeat-seed and zero-profit cases must behave meaningfully. Browser tests import real model code and visibly report pass/fail, then the actual `/bab-example-simulator/` production build must be inspected. Source/notice links and dist-only workflow are included before evaluated checkpoint. No publication claim before coordinator verification.

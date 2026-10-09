@@ -1,0 +1,8 @@
+/* Import canonical duke-tokens.css before this file. */
+:root { color: var(--duke-cast-iron); background: var(--duke-white); font-family: Arial, sans-serif; }
+h1,h2,h3 { font-family: Georgia, serif; color: var(--duke-navy-blue); }
+button,input,select,textarea { font: inherit; }
+:focus-visible { outline: 3px solid var(--duke-navy-blue); outline-offset: 3px; box-shadow: 0 0 0 2px var(--duke-white); }
+button:disabled { opacity: 1; color: var(--duke-graphite); background: var(--duke-hatteras); }
+@media (prefers-reduced-motion: reduce) { *,*::before,*::after { scroll-behavior: auto !important; animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; } }
+input[type="file"] { max-width: 100%; box-sizing: border-box; margin-inline: 0; }
