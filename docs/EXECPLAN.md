@@ -1,56 +1,70 @@
-# Restore the seasonal quantity lesson
+# Make the order experiment teachable and visibly responsive
 
-This living ExecPlan follows the supplied ~/.codex/PLANS.md rules.
+
+This living ExecPlan follows ~/.codex/PLANS.md and covers the remaining SIM items in the revised October 9 checklist. Preserve the previously reviewed model and its public history.
 
 ## Purpose / Big Picture
 
-A buyer can see the full expected-profit peak, then see how downside tolerance changes the feasible choice. Open the app and compare its peak and screened markers, change the loss limit to 20%, run and observe the markers coincide.
+
+A student can predict the effect of changing the loss limit, compare a certainty case by hand, see why conditioned demand has a different realized mean, and inspect one identical simulated world across orders. First load and each run announce preparation before calculation. The recommended quantity is explicitly conditional on proceeding with a launch.
 
 ## Progress
 
-- [x] 2026-10-09: Read original plan, brief, review and current recipes; inspect clean repositories and fetch origin.
-- [x] 2026-10-09: Extend the model, build the quantity curve and histogram, consolidate comparison and methods, bundle fonts and provenance.
-- [x] 2026-10-09: Checkpoint and complete developer browser/production evaluation.
-- [ ] 2026-10-09: Independent review and authorized publication.
+
+- [x] 2026-10-09: Read all shared and SIM checklist items; inspect complete current model, interface and tests; fetch clean origin.
+- [x] Add bounded prediction/answer tasks, demand and common-world summaries, downside link and conditional launch language.
+- [x] Add visible initialization/running state, prevent duplicate starts and measure local calculation time.
+- [ ] Checkpoint and verify meaningful model boundaries plus actual production, keyboard,320px and200% text behavior.
+- [ ] Independent root review before any push; retain actual novice/screen-reader evidence gaps.
 
 ## Surprises & Discoveries
 
-A 5% limit excludes the old q600 comparison but admits the true q558 peak. The default must be lower to teach the actual optimization tradeoff.
+
+The existing app synchronously checks50million quantity/scenario combinations after awaiting fonts. A visible status must paint before this work starts; a promise alone would not permit a frame to paint. The planned two animation-frame yield permits the preparing message to appear. A worker is not justified by an unmeasured assumption.
 
 ## Decision Log
 
-2026-10-09: Use 3% default and analytic expected-profit ranking over all allowed integers, preserving common seeded draws and the conservative loss screen. This avoids making random mean noise determine the curve peak. Keep no-launch out of scope because the current model pays the fixed launch cost for every comparison.
+
+2026-10-09: Keep the independent demand/cost model and1–5000 order range. Put bounded tasks and revealed answers in BUILD-STORY, with a concise app link. Make correlation an explicitly optional extension, not another shipped control. Show conditional-normal mean and seeded rounded demand quantiles beside demand inputs; use one sampled world for every row in a small comparison. The same run sample feeds the full search and selected-order summary. Keep actual screen-reader and novice observation as open human-evidence gates; DOM or agent behavior cannot close them.
 
 ## Outcomes & Retrospective
 
-Implementation and developer browser checks complete; independent approval remains. Retain earlier evaluation evidence rather than relabeling it.
+
+Implementation and bounded teaching tasks are complete. Preliminary Node model adapter passed24/24 after retaining and correcting one guessed test assertion. Actual browser review is delegated to root because the subagent has no enabled browser. No novice, screen-reader or intended-student-device performance claim is made. Historical evaluation remains retained.
 
 ## Context and Orientation
 
-app/model.js owns sampling, analytic values and quantityStudy; app/app.js handles controls and ECharts; app/index.html and style.css own the page. tests/tests.js imports the actual model; tests/reference.py is an independent Python calculation. scripts/notices.mjs builds local package/font notices; vite.config.js owns the Pages prefix.
+
+Repository: /private/tmp/bab-recipe-examples-2026-10-09/simulator. app/model.js owns integer-cent payoff accounting, conditional-normal draws, Wilson loss intervals and the exact expected-contribution quantity scan. app/app.js owns the form, one completed run and ECharts. app/index.html and app/style.css provide disclosure and responsive layout. tests/tests.js imports actual model functions. BUILD-STORY contains public provenance and will contain prediction/answer tasks. Course evidence belongs only in evidence/browser-app-builder/checklist-corrections/2026-10-09/simulator.
 
 ## Plan of Work
 
-Add a bounded integer expected-sales scan and a loss screen using the shared sample. Replace repeating options/scatter with one curve and table. Keep full outcomes available in a histogram disclosure. Update PLAN, DECISIONS and BUILD-STORY for actual scope and provenance. Validate and checkpoint before final browser evidence.
+
+First preserve one explicit sample across quantity calculations and add independently checked demand/scenario summaries. Update the interface to label conditional decisions, include the selected order's simulated fifth percentile, and expose loading state before blocking calculation. Then write exercises for3%→20%, certainty, no eligible quantity and optional correlation. Add a local QA frame that changes only the iframe's root text size; responsive typography/chart geometry must remain readable at200%, not merely fit the page. Record observed dimensions and limitations. Freeze relevant source before final checks; resolve independent findings without deleting failed rounds.
 
 ## Concrete Steps
 
-From this repository run npm ci --cache /private/tmp/bab-npm-cache, node /Users/jordan/Projects/decision-999/plugins/browser-app-builder/scripts/check-dependencies.mjs "$PWD", npm run build. Run npm run test:browser -- --port 9701 and npm run preview -- --port 9702; open /tests/ and /bab-example-simulator/ respectively. Run Python tests/reference.py for independent expected calculations. Source checkpoint covers app, tests, config/workflow, tooling, licenses and PLAN.
+
+Run npm ci --cache /private/tmp/bab-npm-cache and node /Users/jordan/Projects/decision-999/plugins/browser-app-builder/scripts/check-dependencies.mjs from this repository. Run npm run build. Serve npm run test:browser -- --port 9701 and npm run preview -- --port 9702. Open /tests/ and /bab-example-simulator/ with CUA. Authored diagnostic frames may be copied into dist only after local build; the publishing build does not include them. Use source checkpoints and compare PLAN.md, app, tests, scripts, licenses, manifests, lockfile and workflow before publication.
 
 ## Validation and Acceptance
 
-Browser tests must all pass. Expected peak q558 is $6,509.726639; default constrained quantity must be smaller and 20% restores q558. Certainty peak is q500/$8,000; no feasible loss screen never forces a recommendation. Test edited pending inputs, invalid fields, keyboard controls/copy, history consistency before rerunning, font requests and 320/390/1440 frames. Production assets must load at the repository prefix. Record observations, not only source review.
+
+Default stays469 units versus558;20% admits558;0% under uncertainty admits none. Certainty400/500/600 yields5600/8000/6900 dollars and searched optimum500. At mean0/deviation50, continuous conditioned demand mean is50×sqrt(2/pi)=39.894228 units; distinguish that from the seeded rounded sample mean. All quantities in a selected scenario use the identical demand and cost. Zero deviation/equal costs, low mean/high deviation, no eligible order, Wilson endpoint boundaries and negative-profit conditional recommendations receive real graphical/copy checks. Record configured-Mac durations; do not claim intended-student-device performance. Actual novice and screen-reader task protocols remain pending external evidence.
 
 ## Idempotence and Recovery
 
-Commands use locked packages and regenerate notices deterministically; dist is ignored. Reset restores the synthetic default. Preserve prior history and failed evidence; do not push until independent review passes and root authorizes publication.
+
+The app stores no private data. Reset restores defaults, completed results retain their assumptions during edits, and a duplicate start cannot queue another calculation. Builds replace only dist; ordinary commits preserve history. Root must independently approve before push.
 
 ## Artifacts and Notes
 
-EVALUATION.md records tests and commits; BUILD-STORY links public records. Course evidence belongs only in the assigned simulator revision folder.
+
+Per-ID coverage will distinguish implemented, observed, optional-extension disposition and unavailable human evidence. Preserve earlier EVALUATION rounds. No new runtime dependency or remote service is required.
 
 ## Interfaces and Dependencies
 
-quantityStudy(input, sample) returns rows, best, choice, ratio and critical; existing simulate remains available for outcome distributions. No new dependencies or services. Fonts are licensed local assets and notices are retained.
 
-Revision note: expanded the original three-option experiment because it omitted the requested decision lesson; the new plan documents the consequential model and presentation choices.
+Keep pinned jStat, seedrandom, ECharts and Vite. An order-summary function may reuse the existing statistics across the comparison table and selected order; a demand-summary function reports conditional mean and seeded rounded quantiles. Record runtime from performance.now around calculation, separately from font loading.
+
+Revision note: adds the remaining bounded teaching and interaction requirements, preserving the successful full quantity search.

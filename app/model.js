@@ -56,17 +56,24 @@ function costLoss(input,q,sold){
  const lastNonLossCent=Math.floor(revenue/q);
  return Math.max(0,Math.min(1,(input.costHigh-(lastNonLossCent+.5))/(input.costHigh-input.costLow)));
 }
+export function summarizeOrder(input,q,sample){
+ const n=sample.length,deterministic=input.demandSd===0&&input.costLow===input.costHigh;
+ const outcomes=sample.map(({demand,cost})=>outcome(input,q,demand,cost));
+ const profits=outcomes.map(r=>r.profit).sort((a,b)=>a-b),mean=jStat.mean(profits),losses=profits.filter(p=>p<0).length;
+ const loss=losses/n,lossInterval=deterministic?[loss,loss]:wilson(losses,n);
+ const half=jStat.normal.inv(.975,0,1)*jStat.stdev(profits,true)/Math.sqrt(n);
+ return {q,profits,mean,meanInterval:[mean-half,mean+half],loss,lossInterval,eligible:lossInterval[1]<=input.riskLimit,leftover:jStat.mean(outcomes.map(r=>r.leftover)),sold:jStat.mean(outcomes.map(r=>r.sold)),missed:jStat.mean(outcomes.map(r=>r.missed)),stockout:outcomes.filter(r=>r.missed>0).length/n,p05:quantile(profits,.05),median:quantile(profits,.5),p95:quantile(profits,.95),analytical:analytical(input,q)};
+}
+export function demandSummary(input,sample=draws(input)){
+ const sorted=sample.map(r=>r.demand).sort((a,b)=>a-b),z=input.demandSd?-input.demandMean/input.demandSd:0;
+ const conditionedMean=input.demandSd?input.demandMean+input.demandSd*Math.exp(-z*z/2)/Math.sqrt(2*Math.PI)/(1-jStat.normal.cdf(z,0,1)):input.demandMean;
+ return {conditionedMean,mean:jStat.mean(sorted),p05:quantile(sorted,.05),median:quantile(sorted,.5),p95:quantile(sorted,.95)};
+}
 export function simulate(input,n=RUNS){
- const sample=draws(input,n);const deterministic=input.demandSd===0&&input.costLow===input.costHigh;
- const options=input.quantities.map(q=>{
-  const outcomes=sample.map(({demand,cost})=>outcome(input,q,demand,cost));
-  const profits=outcomes.map(r=>r.profit).sort((a,b)=>a-b);const mean=jStat.mean(profits);const losses=profits.filter(p=>p<0).length;
-  const loss=losses/n,lossInterval=deterministic?[loss,loss]:wilson(losses,n);
-  const se=jStat.stdev(profits,true)/Math.sqrt(n),half=jStat.normal.inv(.975,0,1)*se;
-  return {q,profits,mean,meanInterval:[mean-half,mean+half],loss,lossInterval,eligible:lossInterval[1]<=input.riskLimit,leftover:jStat.mean(outcomes.map(r=>r.leftover)),sold:jStat.mean(outcomes.map(r=>r.sold)),missed:jStat.mean(outcomes.map(r=>r.missed)),stockout:outcomes.filter(r=>r.missed>0).length/n,p05:quantile(profits,.05),median:quantile(profits,.5),p95:quantile(profits,.95),analytical:analytical(input,q)};
- });
+ const sample=draws(input,n),deterministic=input.demandSd===0&&input.costLow===input.costHigh;
+ const options=input.quantities.map(q=>summarizeOrder(input,q,sample));
  const eligible=options.filter(r=>r.eligible).sort((a,b)=>b.mean-a.mean||a.q-b.q);
- return {input:structuredClone(input),options,choice:eligible[0]?.q??null,n,deterministic,sampleMean:jStat.mean(sample.map(r=>r.demand)),sampleCost:jStat.mean(sample.map(r=>r.cost))};
+ return {input:structuredClone(input),sample,options,choice:eligible[0]?.q??null,n,deterministic,sampleMean:jStat.mean(sample.map(r=>r.demand)),sampleCost:jStat.mean(sample.map(r=>r.cost))};
 }
 
 // Exact expected sales grow by P(rounded demand >= q); scan every allowed integer.
